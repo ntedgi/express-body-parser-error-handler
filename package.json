@@ -1,0 +1,27 @@
+{
+  "name": "express-body-parser-error-handler",
+  "version": "1.0.0",
+  "description": "middleware to be set right after body parser in order to return 4xx error back to the client",
+  "scripts": {
+    "test": "mocha tests/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntedgi/express-body-parser-error-handler.git"
+  },
+  "keywords": [],
+  "author": "naor.tedgi@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ntedgi/express-body-parser-error-handler/issues"
+  },
+  "homepage": "https://github.com/ntedgi/express-body-parser-error-handler#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "chai": "^4.3.4",
+    "express": "^4.17.2",
+    "mocha": "^9.1.3",
+    "sinon": "^12.0.1",
+    "supertest": "^6.1.6"
+  }
+}
