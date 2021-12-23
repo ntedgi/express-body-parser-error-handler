@@ -4,9 +4,10 @@ middleware to be set right after body parser in order to handle body parser erro
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## About
-99.9% of the time your going to use body parser on your express server application 
-the problem is when errors thrown from this middleware you need to handle them by yourself
-and all errors thrown from body parser are usually 4xx errors caused by client
+99.9% of the time your going to use body parser on your express server application There’re multiple kinds of errors raised by body-parser.
+They involve sending bad headers or data that are not accepted by it, or canceling requests before all the data is read.
+Various 400 series error status codes will be sent as the response along with the corresponding error messages and stack trace
+the problem is when errors thrown from this middleware you need to handle them by yourself and all errors thrown from body parser are usually 4xx errors caused by client
 
 for example:
 
@@ -22,8 +23,6 @@ for example:
 - 'entity.too.large'
 
 use this package if you don't want to handle them yourself :-)
-
-
 
 ## Example
 
