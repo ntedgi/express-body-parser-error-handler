@@ -1,6 +1,8 @@
 # express-body-parser-error-handler
 middleware to be set right after body parser in order to handle body parser errors and return 4xx responses to the client
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 ## About
 99.9% of the time your going to use body parser on your express server application 
 the problem is when errors thrown from this middleware you need to handle them by yourself
@@ -27,12 +29,18 @@ use this package if you don't want to handle them yourself :-)
 
 ```js
 const bodyParserErrorHandler = require('express-body-parser-error-handler')
+const { urlencoded, json } = require('body-parser')
+const express = require('express')
 const app = express();
 router.route('/').get(function (req, res) {
     return res.json({message:"🚀"});
 });
+
+// body parser initilization
 app.use(urlencoded({extended: false, limit: defaultLimitSize}));
 app.use('/', json({limit: '250'}));
+
+// body parser error handler
 app.use(bodyParserErrorHandler());
 app.use(router);
 ...
