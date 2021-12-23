@@ -1,5 +1,5 @@
 # express-body-parser-error-handler
-middleware to be set right after body parser in order to handle body parser errors and return 4xx responses to the client
+middleware to be set right after body parser in order to handle all body parser errors and return 4xx responses to the client
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -24,7 +24,27 @@ for example:
 
 use this package if you don't want to handle them yourself :-)
 
+
 ## Example
+```js
+ request(app)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send('{ email: \'email\', password: \'password\'')
+        .expect(400, function (err, res) {
+          if (err) {
+            return done(err)
+          }
+          expect(JSON.parse(res.text).message).to.equal(
+            'Body Parser failed to parse request --> Unexpected token e in JSON at position 2'
+          )
+
+          done()
+        })
+```
+
+
+## Usage Example
 
 ```js
 const bodyParserErrorHandler = require('express-body-parser-error-handler')
