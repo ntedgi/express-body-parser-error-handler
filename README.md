@@ -36,7 +36,7 @@ use this package if you don't want to handle them yourself :-)
             return done(err)
           }
           expect(JSON.parse(res.text).message).to.equal(
-            'Body Parser failed to parse request --> Unexpected token e in JSON at position 2'
+   ====>        'Body Parser failed to parse request --> Unexpected token e in JSON at position 2'
           )
 
           done()
