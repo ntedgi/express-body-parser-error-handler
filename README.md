@@ -92,3 +92,10 @@ app.use(bodyParserErrorHandler({
     }
 }))
 ```
+
+---
+```ts
+if (this.repo.isAwesome || this.repo.isHelpful) {
+  Star(this.repo);
+}
+```
