@@ -5,7 +5,7 @@ const { expect } = require('chai')
 
 const bodyParserErrorHandler = require('../index')
 
-async function createApp (bodyParserMWConfig) {
+async function createApp(bodyParserMWConfig) {
   const app = express()
   const router = express.Router()
   router.route('/').get(function (req, res) {
@@ -25,7 +25,7 @@ async function createApp (bodyParserMWConfig) {
 describe('Body Parser Error Error Handling Middle ware ', function () {
   describe('should handled on dedicated middleware and return 4xx to client ', function () {
     let app, testServer
-      beforeAll(function (done) {
+    beforeAll(function (done) {
       createApp().then(newApp => {
         app = newApp
         testServer = app.listen(function (err) {
@@ -92,7 +92,7 @@ describe('Body Parser Error Error Handling Middle ware ', function () {
     it('should support onError call back function', function (done) {
       let onErrorFunctionCalled = false
 
-      function onErrorFunction () {
+      function onErrorFunction() {
         onErrorFunctionCalled = true
       }
 
@@ -126,5 +126,29 @@ describe('Body Parser Error Error Handling Middle ware ', function () {
           })
       })
     })
+    it('should pass error not related to body parser ', function (done) {
+      const app = express()
+      const router = express.Router()
+      router.route('/').post(function (req, res) {
+        return res.json({ goodCall: true })
+      })
+      app.use('/', json({ limit: '250kb' }))
+      app.use((err, req, res, next) => {
+        throw new Error("I'm a bad error")
+      })
+      app.use(bodyParserErrorHandler({}))
+      app.use(router)
+      request(app)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send('{ email: \'email\', password: \'password\'}')
+        .expect(500, function (err, res) {
+          console.log(res.text)
+          done()
+        })
+    })
   })
+
+
+
 })
