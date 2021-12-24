@@ -1,8 +1,7 @@
 # express-body-parser-error-handler
 middleware to be set right after body parser in order to handle all body parser errors and return 4xx responses to the client
 
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Node.js CI](https://github.com/ntedgi/express-body-parser-error-handler/actions/workflows/tests.js.yml/badge.svg)](https://github.com/ntedgi/express-body-parser-error-handler/actions/workflows/tests.js.yml)
 ## About
 99.9% of the time your going to use body parser on your express server application There’re multiple kinds of errors raised by body-parser.
 They involve sending bad headers or data that are not accepted by it, or canceling requests before all the data is read.
