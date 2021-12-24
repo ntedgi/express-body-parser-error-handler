@@ -26,7 +26,7 @@ describe('Body Parser Error Error Handling Middle ware ', function () {
   describe('should handled on dedicated middleware and return 4xx to client ', function () {
     let app, testServer
     before(function (done) {
-      createApp({}).then(newApp => {
+      createApp().then(newApp => {
         app = newApp
         testServer = app.listen(function (err) {
           if (err) {
