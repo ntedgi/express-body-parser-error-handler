@@ -17,15 +17,11 @@ for example:
 |entity.parse.failed|400| |
 |entity.verify.failed|403| |
 |request.aborted|400 |request is aborted by the client before reading the body has finished|
-|request.size.invalid|400|request size did not match content length
-|
-|stream.encoding.set|500|stream encoding should not be set
- |
+|request.size.invalid|400|request size did not match content length|
+|stream.encoding.set|500|stream encoding should not be set|
 |parameters.too.many|413| |
-|charset.unsupported|415| unsupported charset “BOGUS”
-|
-|encoding.unsupported|415|unsupported content encoding “bogus”
-|
+|charset.unsupported|415| unsupported charset “BOGUS”|
+|encoding.unsupported|415|unsupported content encoding “bogus”|
 |entity.too.large|413| |
 
 use this package if you don't want to handle them yourself :-)
