@@ -11,7 +11,7 @@ the problem is when errors thrown from this middleware you need to handle them b
 for example:
 
 
-| Type   |      Code      |  discription |
+| Type   |      Code      |  description |
 |----------|:-------------:|------:|
 |encoding.unsupported|415|content encoding unsupported|
 |entity.parse.failed|400| |
@@ -26,13 +26,18 @@ for example:
 
 use this package if you don't want to handle them yourself :-)
 
+## Install
+```sh
+$ npm i express-body-parser-error-handler
+```
+
 
 ## Example
 ```js
  request(app)
         .post('/')
         .set('Content-Type', 'application/json')
-        .send('{ email: \'email\', password: \'password\'') <==== missing "}"   
+        .send('{ email: \'email\', password: \'password\'')  //  <==== missing "}"  - invalid json   
         .expect(400, function (err, res) {
           expect(JSON.parse(res.text).message).to.equal(
    ====>        'Body Parser failed to parse request --> Unexpected token e in JSON at position 2'
@@ -61,9 +66,11 @@ app.use(bodyParserErrorHandler());
 app.use(router);
 ...
 ```
+## Configuration
 
-#### Custom on error callback
-useful if you want to log the error message or send metrics
+**onError** - function(err, req, res) => { } 
+
+Custom on error callback  useful if you want to log the error message or send metrics
 ```js
 app.use(bodyParserErrorHandler({
     onError = (err, req, res) => {
@@ -72,7 +79,7 @@ app.use(bodyParserErrorHandler({
 }))
 ```
 
-#### Custom errorMessage
+**errorMessage** - function(err) => { }
 
 default:
 
@@ -90,6 +97,12 @@ app.use(bodyParserErrorHandler({
 }))
 ```
 
+
+
+
+
+## License 
+MIT © 
 ---
 ```ts
 if (this.repo.isAwesome || this.repo.isHelpful) {
