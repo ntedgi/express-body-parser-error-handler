@@ -10,16 +10,23 @@ the problem is when errors thrown from this middleware you need to handle them b
 
 for example:
 
-- 'encoding.unsupported'
-- 'entity.parse.failed',
-- 'entity.verify.failed',
-- 'request.aborted',
-- 'request.size.invalid',
-- 'stream.encoding.set',
-- 'parameters.too.many',
-- 'charset.unsupported',
-- 'encoding.unsupported',
-- 'entity.too.large'
+
+| Type   |      Code      |  discription |
+|----------|:-------------:|------:|
+|encoding.unsupported|415|content encoding unsupported|
+|entity.parse.failed|400| |
+|entity.verify.failed|403| |
+|request.aborted|400 |request is aborted by the client before reading the body has finished|
+|request.size.invalid|400|request size did not match content length
+|
+|stream.encoding.set|500|stream encoding should not be set
+ |
+|parameters.too.many|413| |
+|charset.unsupported|415| unsupported charset “BOGUS”
+|
+|encoding.unsupported|415|unsupported content encoding “bogus”
+|
+|entity.too.large|413| |
 
 use this package if you don't want to handle them yourself :-)
 
