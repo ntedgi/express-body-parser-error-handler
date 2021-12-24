@@ -32,14 +32,9 @@ use this package if you don't want to handle them yourself :-)
         .set('Content-Type', 'application/json')
         .send('{ email: \'email\', password: \'password\'') <==== missing "}"   
         .expect(400, function (err, res) {
-          if (err) {
-            return done(err)
-          }
           expect(JSON.parse(res.text).message).to.equal(
    ====>        'Body Parser failed to parse request --> Unexpected token e in JSON at position 2'
           )
-
-          done()
         })
 ```
 
