@@ -25,7 +25,7 @@ async function createApp (bodyParserMWConfig) {
 describe('Body Parser Error Error Handling Middle ware ', function () {
   describe('should handled on dedicated middleware and return 4xx to client ', function () {
     let app, testServer
-    before(function (done) {
+      beforeAll(function (done) {
       createApp().then(newApp => {
         app = newApp
         testServer = app.listen(function (err) {
@@ -36,7 +36,7 @@ describe('Body Parser Error Error Handling Middle ware ', function () {
         })
       })
     })
-    after(function (done) {
+    afterAll(function (done) {
       testServer.close(done)
     })
     it('Sanity - should send back a JSON object with goodCall set to true', function (done) {
