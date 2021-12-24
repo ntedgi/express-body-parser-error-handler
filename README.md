@@ -30,7 +30,7 @@ use this package if you don't want to handle them yourself :-)
  request(app)
         .post('/')
         .set('Content-Type', 'application/json')
-        .send('{ email: \'email\', password: \'password\'')
+        .send('{ email: \'email\', password: \'password\'') <==== missing "}"   
         .expect(400, function (err, res) {
           if (err) {
             return done(err)
