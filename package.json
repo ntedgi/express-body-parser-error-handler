@@ -38,9 +38,9 @@
   "standard": {
     "globals": [
       "describe",
-      "before",
+      "beforeAll",
       "it",
-      "after"
+      "afterAll"
     ]
   }
 }

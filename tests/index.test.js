@@ -5,7 +5,7 @@ const { expect } = require('chai')
 
 const bodyParserErrorHandler = require('../index')
 
-async function createApp(bodyParserMWConfig) {
+async function createApp (bodyParserMWConfig) {
   const app = express()
   const router = express.Router()
   router.route('/').get(function (req, res) {
@@ -92,7 +92,7 @@ describe('Body Parser Error Error Handling Middle ware ', function () {
     it('should support onError call back function', function (done) {
       let onErrorFunctionCalled = false
 
-      function onErrorFunction() {
+      function onErrorFunction () {
         onErrorFunctionCalled = true
       }
 
@@ -133,7 +133,7 @@ describe('Body Parser Error Error Handling Middle ware ', function () {
         return res.json({ goodCall: true })
       })
       app.use('/', json({ limit: '250kb' }))
-      app.use((err, req, res, next) => {
+      app.use((e, req, res, next) => {
         throw new Error("I'm a bad error")
       })
       app.use(bodyParserErrorHandler({}))
@@ -142,13 +142,40 @@ describe('Body Parser Error Error Handling Middle ware ', function () {
         .post('/')
         .set('Content-Type', 'application/json')
         .send('{ email: \'email\', password: \'password\'}')
-        .expect(500, function (err, res) {
+        .expect(500, function (e, res) {
           console.log(res.text)
           done()
         })
     })
   })
 
+  describe('play nice with other middlewares', function () {
+    it('should call next if no errors found', function (done) {
+      let middleWareCalled = false
 
+      function nextMiddleWare () {
+        return (req, res, next) => {
+          middleWareCalled = true
+          next()
+        }
+      }
 
+      const app = express()
+      const router = express.Router()
+      router.route('/').post(function (req, res) {
+        return res.json({ goodCall: true })
+      })
+      app.use(bodyParserErrorHandler({}))
+      app.use(nextMiddleWare())
+      app.use(router)
+      request(app)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send('{}')
+        .expect(200, function (e, res) {
+          expect(middleWareCalled).to.equal(true)
+          done()
+        })
+    })
+  })
 })
