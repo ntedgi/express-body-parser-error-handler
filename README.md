@@ -58,8 +58,8 @@ router.route('/').get(function (req, res) {
 });
 
 // body parser initilization
-app.use(urlencoded({extended: false, limit: defaultLimitSize}));
-app.use('/', json({limit: '250'}));
+app.use(urlencoded({extended: false, limit: '250kb'}));
+app.use('/', json({limit: '250kb'}));
 
 // body parser error handler
 app.use(bodyParserErrorHandler());
