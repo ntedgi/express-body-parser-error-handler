@@ -28,9 +28,7 @@ function bodyParserErrorHandler (
       onError(err, req, res)
       res.status(err.status)
       res.send({ message: errorMessage(err) })
-    } else if (err) {
-      next(err)
-    } else next()
+    } else next(err)
   }
 }
 

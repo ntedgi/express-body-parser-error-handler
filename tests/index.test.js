@@ -143,7 +143,6 @@ describe('Body Parser Error Error Handling Middle ware ', function () {
         .set('Content-Type', 'application/json')
         .send('{ email: \'email\', password: \'password\'}')
         .expect(500, function (e, res) {
-          console.log(res.text)
           done()
         })
     })
