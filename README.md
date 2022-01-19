@@ -3,7 +3,10 @@ middleware to be set right after body parser in order to handle all body parser 
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Node.js CI](https://github.com/ntedgi/express-body-parser-error-handler/actions/workflows/tests.js.yml/badge.svg)](https://github.com/ntedgi/express-body-parser-error-handler/actions/workflows/tests.js.yml) [![Coverage Status](https://coveralls.io/repos/github/ntedgi/express-body-parser-error-handler/badge.svg?branch=main)](https://coveralls.io/github/ntedgi/express-body-parser-error-handler?branch=main) [![Build Status](https://app.travis-ci.com/ntedgi/express-body-parser-error-handler.svg?branch=main)](https://app.travis-ci.com/ntedgi/express-body-parser-error-handler)
 ## About
-99.9% of the time your going to use body parser on your express server application There’re multiple kinds of errors raised by body-parser.
+99.9% of the time your going to use body parser on your express server application , even if your going to use express.json,raw,text or urlencoded under the hood it also uses body parser [express source code](https://github.com/expressjs/express/blob/master/lib/express.js#L78)
+
+
+There’re multiple kinds of errors raised by body-parser.
 They involve sending bad headers or data that are not accepted by it, or canceling requests before all the data is read.
 Various 400 series error status codes will be sent as the response along with the corresponding error messages and stack trace
 the problem is when errors thrown from this middleware you need to handle them by yourself and all errors thrown from body parser are usually 4xx errors caused by client
