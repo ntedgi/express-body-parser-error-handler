@@ -8,7 +8,6 @@ function isBodyParserError (error) {
     'stream.encoding.set',
     'parameters.too.many',
     'charset.unsupported',
-    'encoding.unsupported',
     'entity.too.large'
   ]
   return bodyParserCommonErrorsTypes.includes(error.type)
