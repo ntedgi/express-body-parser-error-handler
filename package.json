@@ -23,17 +23,19 @@
     "url": "https://github.com/ntedgi/express-body-parser-error-handler/issues"
   },
   "homepage": "https://github.com/ntedgi/express-body-parser-error-handler#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@types/express": "^4.17.15"
+  },
   "devDependencies": {
-    "supertest": "^6.1.6",
     "body-parser": "^1.15.1",
     "chai": "^4.3.4",
     "coveralls": "^3.1.1",
     "express": "^4.17.2",
+    "jest": "^29.1.2",
     "nyc": "^15.1.0",
     "sinon": "^14.0.1",
-    "jest": "^29.1.2",
-    "standard": "^17.0.0"
+    "standard": "^17.0.0",
+    "supertest": "^6.1.6"
   },
   "standard": {
     "globals": [
