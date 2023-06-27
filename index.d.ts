@@ -1,5 +1,5 @@
 declare module 'express-body-parser-error-handler' {
-	import type { Request, Response, NextFunction } from 'express';
+	import type { Request, Response, ErrorRequestHandler } from 'express';
 
 	export interface BodyParserErrorHandlerOptions {
 		onError?: (err: Error, req: Request, res: Response) => void;
@@ -8,5 +8,5 @@ declare module 'express-body-parser-error-handler' {
 
 	export default function bodyParserErrorHandler(
 		options?: BodyParserErrorHandlerOptions,
-	): (req: Request, res: Response, next: NextFunction) => void;
+	): ErrorRequestHandler;
 }
