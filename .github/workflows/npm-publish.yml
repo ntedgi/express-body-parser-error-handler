@@ -1,25 +1,17 @@
-name: npm-publish
+name: publish to npm
 on:
-  push:
-    branches:
-      - main # Change this to your default branch
+  release:
+    types: [created]
 jobs:
-  npm-publish:
-    name: npm-publish
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Publish if version has been updated
-      uses: pascalgn/npm-publish-action@1.3.9
-      with: # All of theses inputs are optional
-        tag_name: "v%s"
-        tag_message: "v%s"
-        create_tag: "true"
-        commit_pattern: "^Release (\\S+)"
-        workspace: "."
-        publish_command: "npm"
-        publish_args: "--non-interactive"
-      env: # More info about the environment variables in the README
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 20.x
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm install
+    - run: npm publish
+      env:
         NPM_AUTH_TOKEN: ${{ secrets._GITHUB_TOKEN}} # You need to set this in your repo settings
