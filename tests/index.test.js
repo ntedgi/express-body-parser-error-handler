@@ -85,7 +85,7 @@ describe("Body Parser Error Error Handling Middle ware ", function () {
           }
 
           expect(JSON.parse(res.text).message).to.equal(
-            "Body Parser failed to parse request --> request entity too large"
+            "Body Parser failed to parse request --> request entity too large",
           );
 
           done();
@@ -126,7 +126,7 @@ describe("Body Parser Error Error Handling Middle ware ", function () {
           .send("{ email: 'email', password: 'password'")
           .expect(400, function (err, res) {
             expect(JSON.parse(res.text).message).to.equal(
-              errorMessageExample(err)
+              errorMessageExample(err),
             );
             done();
           });
