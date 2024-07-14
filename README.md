@@ -76,7 +76,7 @@ app.use(router);
 Custom on error callback  useful if you want to log the error message or send metrics
 ```js
 app.use(bodyParserErrorHandler({
-    onError = (err, req, res) => {
+    onError = (err, req, res, next) => {
         ...
     }
 }))
