@@ -1,6 +1,6 @@
 {
   "name": "express-body-parser-error-handler",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "middleware to be set right after body parser in order to return 4xx error back to the client",
   "scripts": {
     "test": "jest --clearCache && jest --coverage",
